@@ -61,4 +61,17 @@ Thumbs.db
 #Engine
 /libs/cocos2d-x
 
+#sample
+samples/LiquidFun-Testbed/proj.win32/.vs/
+
 /.idea
+*.zip
+*.db
+*.db-shm
+*.db-wal
+*.tmp
+*.log
+*.tmp
+*.htm
+*.opendb
+*.pyc

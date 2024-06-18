@@ -152,7 +152,7 @@ class CocosZipInstaller(object):
         by ``zipfile.is_zipfile()``).
         """
 
-        self.ensure_directory(self._extracted_folder_name);
+        self.ensure_directory(self._extracted_folder_name)
 
         if not zipfile.is_zipfile(self._filename):
             raise UnrecognizedFormat("%s is not a zip file" % (self._filename))
@@ -220,7 +220,7 @@ class CocosZipInstaller(object):
         zipfile = os.path.join(self._workpath, self._filename)
         
         data = self.load_json_file(self._config_path)
-        if os.path.exists(zipfile) and data["MD5"] == self.md5_file(zipfile) and os.path.exists(self._work_folder_name):
+        if os.path.exists(zipfile) and os.path.exists(self._work_folder_name):
             return False
         return True
 
@@ -250,9 +250,10 @@ class CocosZipInstaller(object):
         if os.path.exists(self._work_folder_name):
             shutil.rmtree(self._work_folder_name)
 
-        self.download_zip_file()
+        # self.download_zip_file()
 
         if not download_only:
+            print("extracted_folder_name ", self._extracted_folder_name)
             self.unpack_zipfile(self._extracted_folder_name)
             print("==> Copying files...")
             if not os.path.exists(folder_for_extracting):

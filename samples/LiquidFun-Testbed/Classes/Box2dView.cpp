@@ -27,6 +27,8 @@
 #include "Test.h"
 #include "VisibleRect.h"
 
+#include <iostream>
+
 #define kAccelerometerFrequency 30
 #define FRAMES_BETWEEN_PRESSES_FOR_DOUBLE_CLICK 10
 
@@ -85,9 +87,22 @@ bool MenuLayer::initWithEntryID(int entryId)
     view->setScale(15);
     view->setAnchorPoint( Point(0,0) );
     view->setPosition( Point(visibleOrigin.x+visibleSize.width/2, visibleOrigin.y+visibleSize.height/3) );  
+	// String fontPath = CCFileUtils::getInstance()->fullPathForFilename("fonts/arial.ttf");
+	// add searchPath
+	std::vector<std::string> listPaths = FileUtils::getInstance()->getSearchPaths();
+	for (std::string searchPath : listPaths) {
+		// std::cout << "listPath -> " << searchPath << std::endl;
+		cocos2d::log("listPath -> %s", searchPath.c_str());
+	}
+
+	FileUtils::getInstance()->addSearchPath("../../Resources");
+	
     auto label = Label::createWithTTF(view->title(), "fonts/arial.ttf", 28);
-    addChild(label, 1);
-    label->setPosition( Point(visibleOrigin.x+visibleSize.width/2, visibleOrigin.y+visibleSize.height-50) );
+	if (label != NULL) {
+		addChild(label, 1);
+		label->setPosition(Point(visibleOrigin.x + visibleSize.width / 2, visibleOrigin.y + visibleSize.height - 50));
+	}
+
 
     auto item1 = MenuItemImage::create("Images/b1.png", "Images/b2.png", CC_CALLBACK_1(MenuLayer::backCallback, this) );
     auto item2 = MenuItemImage::create("Images/r1.png","Images/r2.png", CC_CALLBACK_1( MenuLayer::restartCallback, this) );

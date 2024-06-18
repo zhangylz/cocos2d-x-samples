@@ -4,7 +4,15 @@
 
 Contains different samples that show how to use Cocos2d-x v3.2 with 3rd party libraries:
 
+## download vs2012
+
 ## Running the samples
+
+### modify libs/config.json
+   "downloadUrl": " http://www.cocos2d-x.org/filedown/",
+   download by self. https://download.cocos.com/Cocos2D-X/cocos2d-x-3.8.zip
+   place it to  root path of repo.
+   delete download step. todo follow step.
 
 ### Download
 
